@@ -22,5 +22,10 @@ body {
   max-width: fit-content;
 }
 
+#battleText {
+  -webkit-text-stroke: 1px rgb(165, 44, 44);
+  font-size: x-large;
+}
+
 .characterCard {
 }

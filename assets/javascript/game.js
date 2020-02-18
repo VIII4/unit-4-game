@@ -1,19 +1,10 @@
 //Html Elements
 
-var charSelectionPanel;
-var playerCharSlot;
-var playerHPDisplay;
-var enemySelectionPanel;
-var enemyHPDisplay;
-var targetCharSlot;
-var attackButton;
+var textDisplay;
 
 //Global Variables
 
 var gameState = 0; //0 = Setup,  1 = Player Selection, 2= Enemy Selection, 3 = Combat
-
-var winCounter;
-var lossCounter;
 
 var playerObj;
 var targetObj;
@@ -22,13 +13,28 @@ var characterContainer = [];
 var enemyContainer = [];
 
 //Instructions
-var gameInstructions;
+var gameInstructions = {
+  characterSelection: "Select your character",
+  enemySelection: "Select an Enemy to Battle",
+  initialCombat: "Press Attack to battle Enemy",
+  combat: function(_player, _enemy) {
+    var temp =
+      _player.name +
+      " attacked " +
+      _enemy.name +
+      " for " +
+      _player.currentAtkPwr +
+      " damage. " +
+      _enemy.name +
+      " countered with " +
+      _enemy.cntrPwr +
+      " damage.";
+    return temp;
+  }
+};
 
 //Character Object Base
-
 function CharacterObject(_name, _hp, _atkPwr, _cntrPwr, _imgPath) {
-  ////Variables
-
   //Character Attributes
   this.name = _name;
   this.atkPwr = _atkPwr;
@@ -160,6 +166,7 @@ var characterContainer = [
 
 var setGame = function() {
   if (gameState === 0) {
+    textDisplay.text(gameInstructions.characterSelection);
     for (i = 0; i < characterContainer.length; i++) {
       characterContainer[i].createPanel();
     }
@@ -180,6 +187,7 @@ var setGame = function() {
 
   //Set Game State to Player Selection
   gameState = 1;
+  textDisplay.text(gameInstructions.characterSelection);
 };
 
 //Method that happens when user clicks on any character image
@@ -204,6 +212,7 @@ var clickAction = function(_state, _obj) {
 
     //Change State to 2
     gameState = 2;
+    textDisplay.text(gameInstructions.enemySelection);
   } else if (_state === 2) {
     //check if already assigned as player...
     if (_obj.name === playerObj.name) {
@@ -225,6 +234,7 @@ var clickAction = function(_state, _obj) {
 
       //Change state to 3
       gameState = 3;
+      textDisplay.text(gameInstructions.initialCombat);
     }
   } else {
     console.log("State  0 or 3");
@@ -232,6 +242,7 @@ var clickAction = function(_state, _obj) {
   }
 };
 
+//Method that happens when user clicks on attack button
 var combatAction = function() {
   //Check if in combat State
   if (gameState === 3) {
@@ -247,6 +258,7 @@ var combatAction = function() {
     );
     //Player attacks target, deals damage and recieves counter damage.
     playerObj.combat(targetObj);
+    textDisplay.text(gameInstructions.combat(playerObj, targetObj));
     playerObj.updateDisplay();
     targetObj.updateDisplay();
     //update display of HP
@@ -271,10 +283,12 @@ var combatAction = function() {
       else {
         alert("Enemy Eliminated choose new target");
         gameState = 2;
+        textDisplay.text(gameInstructions.enemySelection);
       }
     }
     if (playerObj.currentHp <= 0) {
       alert("Player Eliminated, Game Over");
+      gameState = 3;
       //   gameState = 1;
       setGame();
     }
@@ -291,6 +305,7 @@ var debug = function() {
 };
 
 $(document).ready(function() {
+  textDisplay = $("#battleText");
   setGame();
 
   //Test
