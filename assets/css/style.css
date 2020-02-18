@@ -1,6 +1,7 @@
 body {
   font-family: "Tomorrow", sans-serif;
-  color: rgb(253, 234, 192);
+  color: rgb(0, 0, 0);
+  -webkit-text-stroke: 1px rgb(219, 219, 219);
   background: url(../images/background3.jpg) no-repeat center center fixed;
   /* background: url(../images/WindowsDesignBG.png) no-repeat center center fixed; */
   -webkit-background-size: cover;

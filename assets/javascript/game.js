@@ -81,11 +81,17 @@ function CharacterObject(_name, _hp, _atkPwr, _cntrPwr, _imgPath) {
   this.reset = function() {
     this.currentHp = this.hp;
     this.currentAtkPwr = this.atkPwr;
+    this.eliminated = false;
+    //this.hpDisplay.text(this.hp);
   };
 
   //Update display
   this.updateDisplay = function() {
     this.hpDisplay.text(this.currentHp);
+  };
+
+  this.resetDisplay = function() {
+    this.hpDisplay.text(this.hp);
   };
 
   this.createPanel = function() {
@@ -106,7 +112,7 @@ function CharacterObject(_name, _hp, _atkPwr, _cntrPwr, _imgPath) {
         other +
         "health'>" +
         this.hp +
-        " </p></div></div>  </div> </div>"
+        " </p></div></div></div></div>"
     );
   };
 }
@@ -153,9 +159,6 @@ var characterContainer = [
 ];
 
 var setGame = function() {
-  //Create all character cards and append to selection panel
-  //For each character object in character container, create a element in the panel
-
   if (gameState === 0) {
     for (i = 0; i < characterContainer.length; i++) {
       characterContainer[i].createPanel();
@@ -163,7 +166,16 @@ var setGame = function() {
   }
 
   for (i = 0; i < characterContainer.length; i++) {
+    characterContainer[i].reset();
+
     $("#charSelectionPanel").append(characterContainer[i].characterPanel);
+    characterContainer[i].characterPanel.show();
+  }
+
+  if (gameState === 3) {
+    playerObj.resetDisplay();
+    targetObj.resetDisplay();
+    // console.log("test");
   }
 
   //Set Game State to Player Selection
@@ -241,13 +253,29 @@ var combatAction = function() {
 
     //check HP of player and Target if player is zero game over, if enemy is choose new enemy
     if (targetObj.currentHp <= 0) {
-      alert("Enemy Eliminated choose new target");
       targetObj.eliminated = true;
-      gameState = 2;
-      //Add way to check if all enemies eliminated
-    } else if (playerObj.currentHp <= 0) {
+      targetObj.characterPanel.hide();
+      targetObj.hpDisplay.text(targetObj.hp);
+
+      //Check if all enemies eliminated
+      if (
+        (characterContainer[0].eliminated &&
+          characterContainer[1].eliminated &&
+          characterContainer[2].eliminated &&
+          characterContainer[3].eliminated) === true
+      ) {
+        alert("All Enemies Defeated, You Win!");
+        setGame();
+      }
+      //
+      else {
+        alert("Enemy Eliminated choose new target");
+        gameState = 2;
+      }
+    }
+    if (playerObj.currentHp <= 0) {
       alert("Player Eliminated, Game Over");
-      gameState = 1;
+      //   gameState = 1;
       setGame();
     }
   }
