@@ -10,16 +10,6 @@ body {
 }
 
 .portrait {
-  width: 100%;
-}
-
-.portraitText {
-  color: white;
-  -webkit-text-stroke: 1px black;
-  font-size: 12px;
-  letter-spacing: 1px;
-  max-width: fit-content;
-}
-
-.characterCard {
+  height: 15%;
+  width: 15%;
 }

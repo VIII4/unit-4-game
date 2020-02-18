@@ -1,33 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- saved from url=(0071)file:///C:/Users/iyanl/Documents/Bootcamp/GitHub/unit-4-game/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG Game</title>
 
     <!-- Bootstrap -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="./Star Wars RPG Game_files/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Tomorrow:600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="./Star Wars RPG Game_files/css" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/reset.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="./Star Wars RPG Game_files/reset.css">
+    <link rel="stylesheet" href="./Star Wars RPG Game_files/style.css">
 
     <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./Star Wars RPG Game_files/jquery.min.js.download"></script>
 
     <!-- Javascript -->
-    <script src="assets/javascript/game.js"></script>
+    <script src="./Star Wars RPG Game_files/game.js.download"></script>
   </head>
 
   <body>
@@ -38,8 +30,9 @@
           <h1>Star Wars RPG</h1>
         </div>
       </div>
-      <div id="charSelectionPanel" class="row row-no-gutters"></div>
-
+      <div class="row">
+        <div id="charSelectionPanel" class="col"><div id="darthMaul" class="col"><div class="card border-0 bg-transparent"> <img class="portrait" src="./Star Wars RPG Game_files/darthmaul.png"> <div class="card-img-overlay">  <div class="row"> <div class="col"> <p id="darthMaulnameDisplay"></p></div></div>  <div class="row"> <div class="col"> <p id="darthMaulhealth"></p></div></div>  </div> </div></div></div>
+      </div>
       <div class="row">
         <div class="col-4">
           <h3>Your Character</h3>
@@ -57,7 +50,7 @@
         <div class="col"></div>
       </div>
       <div class="row">
-        <div id="enemySelectionPanel" class="col-4"></div>
+        <div id="enmeySelectionPanel" class="col-4"></div>
         <div class="col"></div>
       </div>
       <div class="row">
@@ -69,9 +62,7 @@
       <div class="row">
         <div class="col-1"></div>
         <div class="col-2">
-          <button type="button" id="attackButton" class="btn btn-warning">
-            Attack
-          </button>
+          <div id="attackButton" class="button"></div>
         </div>
         <div class="col"></div>
       </div>
@@ -86,11 +77,10 @@
         <div class="col"></div>
       </div>
       <div class="row">
-        <div id="textContainter" class="col-6">
-          <p id="battleText">Choose a Character to Start</p>
-        </div>
+        <div id="battleText" class="col-6"></div>
         <div class="col-6"></div>
       </div>
     </div>
-  </body>
-</html>
+  
+
+</body></html>
